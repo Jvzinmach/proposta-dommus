@@ -91,7 +91,7 @@
     #track {
       display: flex;
       will-change: transform;
-      transition: transform .75s cubic-bezier(0.76, 0, 0.24, 1);
+      transition: transform 1.1s cubic-bezier(0.77, 0, 0.18, 1);
     }
 
     /* ── Sections ── */
@@ -428,13 +428,16 @@
 
     // Wheel
     let wheelTimeout;
+    let lastWheel = 0;
     window.addEventListener('wheel', e => {
       e.preventDefault();
+      const now = Date.now();
+      if (now - lastWheel < 900) return;
       clearTimeout(wheelTimeout);
       wheelTimeout = setTimeout(() => {
-        if (e.deltaY > 30 || e.deltaX > 30)  goTo(current + 1);
-        if (e.deltaY < -30 || e.deltaX < -30) goTo(current - 1);
-      }, 30);
+        if (e.deltaY > 30 || e.deltaX > 30)  { goTo(current + 1); lastWheel = Date.now(); }
+        if (e.deltaY < -30 || e.deltaX < -30) { goTo(current - 1); lastWheel = Date.now(); }
+      }, 80);
     }, { passive: false });
 
     // Arrow keys
