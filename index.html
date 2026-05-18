@@ -1,130 +1,455 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proposta Comercial | Dommus</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Outfit', 'sans-serif'],
-                    },
-                    colors: {
-                        'dommus-dark': '#0a0a0a',
-                        'dommus-card': '#141414',
-                        'dommus-gold': '#d4af37',
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body { background-color: #0a0a0a; color: #f5f5f5; }
-        .glass-panel {
-            background: rgba(20, 20, 20, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Proposta Comercial Â· Dommus Planejados</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,600&display=swap" rel="stylesheet"/>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark:    #0b1a15;
+      --primary: #11251e;
+      --accent:  #e6deca;
+      --muted:   rgba(230,222,202,0.45);
+      --glass:   rgba(17,37,30,0.55);
+    }
+
+    html, body {
+      width: 100%; height: 100%;
+      background: var(--dark);
+      color: var(--accent);
+      font-family: 'Outfit', sans-serif;
+      overflow: hidden;
+      cursor: none;
+    }
+
+    /* â”€â”€ Noise overlay â”€â”€ */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: 9999;
+      opacity: 0.045;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/svg%3E");
+    }
+
+    /* â”€â”€ Custom cursor â”€â”€ */
+    #cursor {
+      position: fixed; top: 0; left: 0;
+      width: 16px; height: 16px;
+      border: 1px solid var(--accent);
+      border-radius: 50%;
+      pointer-events: none; z-index: 99998;
+      transform: translate(-50%,-50%);
+      mix-blend-mode: difference;
+      transition: width .3s ease, height .3s ease, background .3s ease;
+    }
+    #cursor.expand { width: 44px; height: 44px; background: rgba(230,222,202,0.12); }
+
+    /* â”€â”€ Progress bar â”€â”€ */
+    #progress {
+      position: fixed; top: 0; left: 0;
+      height: 2px; width: 0%;
+      background: var(--accent);
+      z-index: 9997;
+      transition: width .15s ease;
+    }
+
+    /* â”€â”€ Pill nav â”€â”€ */
+    #pill-nav {
+      position: fixed; top: 28px; left: 50%; transform: translateX(-50%);
+      z-index: 9996;
+      display: flex; align-items: center; gap: 32px;
+      padding: 14px 36px;
+      border-radius: 999px;
+      border: 1px solid rgba(230,222,202,0.08);
+      backdrop-filter: blur(20px);
+      background: rgba(11,26,21,0.5);
+    }
+    #pill-nav .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem; letter-spacing: .08em;
+      color: var(--accent);
+    }
+    #pill-nav .dots { display: flex; gap: 8px; }
+    #pill-nav .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--muted);
+      cursor: pointer; transition: background .3s, transform .3s;
+    }
+    #pill-nav .dot.active { background: var(--accent); transform: scale(1.4); }
+
+    /* â”€â”€ Horizontal scroll wrapper â”€â”€ */
+    #track-wrap {
+      position: fixed; inset: 0;
+      display: flex; align-items: stretch;
+    }
+    #track {
+      display: flex;
+      will-change: transform;
+      transition: transform .75s cubic-bezier(0.76, 0, 0.24, 1);
+    }
+
+    /* â”€â”€ Sections â”€â”€ */
+    .panel {
+      width: 100vw; height: 100vh;
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      padding: 0 8vw;
+      position: relative; overflow: hidden;
+    }
+
+    /* Vertical green line accent */
+    .panel::before {
+      content: '';
+      position: absolute; left: 50%; top: 10%; bottom: 10%;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, rgba(230,222,202,0.1), transparent);
+    }
+    .panel:first-child::before, .panel:last-child::before { display: none; }
+
+    /* â”€â”€ Panel 1 â€“ Hero â”€â”€ */
+    #p1 { flex-direction: column; text-align: center; gap: 24px; }
+    #p1 .eyebrow {
+      font-size: .75rem; letter-spacing: .35em; text-transform: uppercase;
+      color: var(--muted);
+    }
+    #p1 h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 7vw, 6rem);
+      font-weight: 700; line-height: 1.05;
+      color: var(--accent);
+    }
+    #p1 h1 em { font-style: italic; color: var(--accent); opacity: .65; }
+    #p1 .sub {
+      font-size: 1.05rem; color: var(--muted); max-width: 480px; line-height: 1.7;
+    }
+    #p1 .cta-scroll {
+      margin-top: 16px; display: flex; align-items: center; gap: 12px;
+      font-size: .78rem; letter-spacing: .2em; text-transform: uppercase; color: var(--muted);
+      animation: nudge 2.4s ease-in-out infinite;
+    }
+    #p1 .cta-scroll svg { width: 40px; height: 12px; stroke: var(--muted); }
+    @keyframes nudge { 0%,100%{ transform: translateX(0); } 50%{ transform: translateX(10px); } }
+
+    /* â”€â”€ Panel 2 â€“ Escopo â”€â”€ */
+    #p2 { gap: 10vw; }
+    .p2-left { flex: 1; }
+    .p2-left .number {
+      font-family: 'Playfair Display', serif; font-style: italic;
+      font-size: 5rem; color: rgba(230,222,202,0.08); line-height: 1;
+      margin-bottom: -12px;
+    }
+    .p2-left h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem,4vw,3.2rem); font-weight: 700;
+      line-height: 1.15; color: var(--accent);
+    }
+    .p2-left p { margin-top: 20px; color: var(--muted); line-height: 1.8; font-size: .95rem; }
+    .p2-right { flex: 1; display: flex; flex-direction: column; gap: 16px; }
+    .item-card {
+      border: 1px solid rgba(230,222,202,0.08);
+      border-radius: 16px;
+      padding: 20px 24px;
+      background: var(--glass);
+      backdrop-filter: blur(12px);
+      transition: border-color .3s;
+    }
+    .item-card:hover { border-color: rgba(230,222,202,0.25); }
+    .item-card h4 { font-size: .9rem; font-weight: 600; color: var(--accent); margin-bottom: 6px; }
+    .item-card p  { font-size: .82rem; color: var(--muted); line-height: 1.6; }
+
+    /* â”€â”€ Panel 3 â€“ Investimento â”€â”€ */
+    #p3 { flex-direction: column; gap: 12px; }
+    #p3 .tag {
+      font-size: .7rem; letter-spacing: .3em; text-transform: uppercase;
+      color: var(--muted); border: 1px solid rgba(230,222,202,0.12);
+      padding: 6px 18px; border-radius: 999px; display: inline-block;
+    }
+    #p3 .price {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(4rem,12vw,9rem); font-weight: 700;
+      line-height: 1; color: var(--accent);
+    }
+    #p3 .price sup { font-size: .35em; vertical-align: super; opacity: .7; }
+    #p3 .price-note { color: var(--muted); font-size: .9rem; margin-top: 4px; }
+    #p3 .payment-opts {
+      display: flex; gap: 16px; margin-top: 32px; flex-wrap: wrap;
+    }
+    .opt {
+      flex: 1; min-width: 220px;
+      border: 1px solid rgba(230,222,202,0.1);
+      border-radius: 20px; padding: 24px 28px;
+      background: var(--glass); backdrop-filter: blur(12px);
+      transition: border-color .3s, transform .3s;
+    }
+    .opt:hover { border-color: rgba(230,222,202,0.3); transform: translateY(-4px); }
+    .opt .opt-icon { font-size: 1.6rem; margin-bottom: 10px; }
+    .opt h4 { font-size: .9rem; font-weight: 600; color: var(--accent); margin-bottom: 8px; }
+    .opt p  { font-size: .8rem; color: var(--muted); line-height: 1.6; }
+
+    /* â”€â”€ Panel 4 â€“ Termos â”€â”€ */
+    #p4 { gap: 10vw; align-items: flex-start; padding-top: 12vh; }
+    #p4 .terms-header { flex: 0 0 auto; max-width: 280px; }
+    #p4 .terms-header .number { font-family:'Playfair Display',serif; font-style:italic; font-size:4rem; color:rgba(230,222,202,0.07); }
+    #p4 .terms-header h2 { font-family:'Playfair Display',serif; font-size: clamp(1.6rem,3vw,2.5rem); color:var(--accent); line-height:1.2; }
+    #p4 .terms-header p { margin-top: 14px; font-size: .82rem; color: var(--muted); line-height:1.7; }
+    .terms-list { flex: 1; display: flex; flex-direction: column; gap: 0; }
+    .term-row {
+      border-top: 1px solid rgba(230,222,202,0.07);
+      padding: 18px 0;
+      display: flex; gap: 20px; align-items: flex-start;
+    }
+    .term-row:last-child { border-bottom: 1px solid rgba(230,222,202,0.07); }
+    .term-num { font-family:'Playfair Display',serif; font-style:italic; font-size:1.1rem; color:var(--muted); min-width:28px; }
+    .term-body h4 { font-size: .88rem; font-weight:600; color:var(--accent); margin-bottom:4px; }
+    .term-body p  { font-size: .8rem; color: var(--muted); line-height:1.65; }
+
+    /* â”€â”€ Panel 5 â€“ Aceite â”€â”€ */
+    #p5 { flex-direction: column; text-align: center; gap: 28px; }
+    #p5 .eyebrow { font-size: .72rem; letter-spacing:.3em; text-transform:uppercase; color:var(--muted); }
+    #p5 h2 { font-family:'Playfair Display',serif; font-style:italic; font-size:clamp(2rem,5vw,4rem); color:var(--accent); line-height:1.1; }
+    #p5 p { color:var(--muted); font-size:.92rem; max-width:420px; line-height:1.75; }
+    #p5 .btn-aceite {
+      display: inline-block; margin-top: 12px;
+      padding: 18px 52px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--dark);
+      font-size: .88rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      text-decoration: none;
+      transition: transform .3s ease, box-shadow .3s ease, background .3s ease;
+      cursor: none;
+    }
+    #p5 .btn-aceite:hover {
+      background: #f0ead8;
+      transform: scale(1.04);
+      box-shadow: 0 0 60px rgba(230,222,202,0.25);
+    }
+    #p5 .legal { font-size: .72rem; color: rgba(230,222,202,0.3); max-width: 360px; }
+
+    /* â”€â”€ BG ambient blobs â”€â”€ */
+    .blob {
+      position: absolute; border-radius: 50%; filter: blur(90px);
+      pointer-events: none; z-index: 0; opacity: .18;
+    }
+
+    /* panel content above blob */
+    .panel > *:not(.blob) { position: relative; z-index: 1; }
+  </style>
 </head>
-<body class="antialiased min-h-screen flex flex-col items-center py-12 px-4 sm:px-6">
+<body>
 
-    <div class="w-full max-w-4xl space-y-12">
-        
-        <!-- Header -->
-        <header class="text-center space-y-4 fade-in">
-            <h2 class="text-dommus-gold uppercase tracking-[0.3em] text-sm font-semibold">Proposta Exclusiva</h2>
-            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">EstratÃ©gia Digital <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-dommus-gold to-yellow-200">Dommus Planejados</span></h1>
-            <p class="text-gray-400 max-w-xl mx-auto pt-4 text-lg">Desenvolvimento de presenÃ§a digital de alto padrÃ£o para destacar a excelÃªncia e sofisticaÃ§Ã£o dos seus projetos.</p>
-        </header>
+  <div id="cursor"></div>
+  <div id="progress"></div>
 
-        <!-- Escopo do Projeto -->
-        <section class="glass-panel rounded-2xl p-8 md:p-10 shadow-2xl">
-            <div class="flex items-center space-x-4 mb-6">
-                <div class="w-12 h-12 rounded-full bg-dommus-gold/10 flex items-center justify-center text-dommus-gold">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
-                </div>
-                <h3 class="text-2xl font-bold">Escopo do Projeto</h3>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="space-y-2">
-                    <h4 class="font-semibold text-dommus-gold">Site Institucional Premium</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">Design sofisticado, focado em conversÃ£o e na exibiÃ§Ã£o em alta qualidade dos portfÃ³lios e ambientes planejados.</p>
-                </div>
-                <div class="space-y-2">
-                    <h4 class="font-semibold text-dommus-gold">100% Responsivo</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">AdaptaÃ§Ã£o perfeita para celulares, tablets e computadores, garantindo a melhor experiÃªncia ao seu cliente.</p>
-                </div>
-                <div class="space-y-2">
-                    <h4 class="font-semibold text-dommus-gold">IntegraÃ§Ã£o com WhatsApp</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">BotÃ£o flutuante e chamadas para aÃ§Ã£o estratÃ©gicas para transformar visitantes em orÃ§amentos diretos no seu WhatsApp.</p>
-                </div>
-                <div class="space-y-2">
-                    <h4 class="font-semibold text-dommus-gold">Garantia e Suporte</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">15 dias de suporte tÃ©cnico e acompanhamento gratuito apÃ³s a publicaÃ§Ã£o oficial do site.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Investimento -->
-        <section class="glass-panel rounded-2xl p-8 md:p-10 shadow-2xl border-l-4 border-l-dommus-gold">
-            <h3 class="text-2xl font-bold mb-6">Investimento</h3>
-            
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-                <div>
-                    <div class="text-5xl font-extrabold text-white">R$ 600<span class="text-xl text-gray-500 font-normal">,00</span></div>
-                    <p class="text-gray-400 mt-2 text-sm">Valor Ãºnico pelo desenvolvimento completo do projeto.</p>
-                </div>
-                
-                <div class="bg-dommus-dark rounded-xl p-5 border border-white/5 w-full md:w-auto">
-                    <h4 class="text-sm uppercase tracking-wider text-gray-500 font-semibold mb-3">Formas de Pagamento</h4>
-                    <ul class="space-y-3 text-sm text-gray-300">
-                        <li class="flex items-center">
-                            <span class="w-2 h-2 rounded-full bg-green-500 mr-3"></span>
-                            <span><strong>PIX:</strong> 50% no aceite + 50% na entrega</span>
-                        </li>
-                        <li class="flex items-center">
-                            <span class="w-2 h-2 rounded-full bg-dommus-gold mr-3"></span>
-                            <span><strong>CartÃ£o:</strong> AtÃ© 4x no link de pagamento</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Termos e CondiÃ§Ãµes (Contrato) -->
-        <section class="glass-panel rounded-2xl p-8 shadow-2xl">
-            <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
-                <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                Termos do Acordo Comercial
-            </h3>
-            <div class="text-sm text-gray-400 space-y-4 h-48 overflow-y-auto pr-4 scrollbar-thin">
-                <p><strong>1. Entrega e Prazo:</strong> O prazo de entrega do site serÃ¡ acordado via WhatsApp, iniciando a contagem apenas apÃ³s o pagamento da primeira parcela e do envio de todos os materiais (fotos, textos e acessos) por parte do CONTRATANTE.</p>
-                
-                <p><strong>2. Hospedagem e DomÃ­nio:</strong> Os custos da plataforma de hospedagem e registro de domÃ­nio (.com.br) sÃ£o de responsabilidade do CONTRATANTE. O CONTRATADO auxiliarÃ¡ no passo a passo para a contrataÃ§Ã£o da Hostinger.</p>
-                
-                <p><strong>3. Suporte:</strong> EstÃ£o inclusos 15 dias de suporte para pequenas alteraÃ§Ãµes (textos, troca de fotos e correÃ§Ã£o de erros) apÃ³s a entrega. MudanÃ§as estruturais nÃ£o estÃ£o cobertas no suporte gratuito.</p>
-                
-                <p><strong>4. Cancelamento:</strong> Em caso de desistÃªncia apÃ³s o inÃ­cio do projeto, o valor de entrada (50%) nÃ£o serÃ¡ reembolsado, cobrindo as horas jÃ¡ trabalhadas. A transferÃªncia oficial do site ocorre mediante o pagamento de 100% do valor.</p>
-            </div>
-        </section>
-
-        <!-- CTA Aceite -->
-        <div class="text-center pt-8 pb-12">
-            <p class="text-gray-400 mb-6 text-sm">Ao clicar no botÃ£o abaixo, vocÃª concorda com os termos descritos acima e sela nossa parceria.</p>
-            <!-- O link abaixo vai direto para o seu WhatsApp -->
-            <a href="https://wa.me/5527998477030?text=Ol%C3%A1!%20Li%20a%20proposta%20da%20Dommus%20e%20estou%20de%20acordo.%20Podemos%20seguir%20com%20o%20pagamento%20e%20iniciar%20o%20projeto!" 
-               class="inline-block bg-dommus-gold hover:bg-yellow-500 text-black font-bold text-lg py-4 px-10 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_20px_rgba(212,175,55,0.4)]">
-                Aprovar Proposta e Iniciar Projeto
-            </a>
-        </div>
-
+  <!-- Pill Nav -->
+  <nav id="pill-nav">
+    <span class="logo">Dommus</span>
+    <div class="dots">
+      <div class="dot active" data-idx="0"></div>
+      <div class="dot" data-idx="1"></div>
+      <div class="dot" data-idx="2"></div>
+      <div class="dot" data-idx="3"></div>
+      <div class="dot" data-idx="4"></div>
     </div>
+  </nav>
 
+  <!-- Horizontal track -->
+  <div id="track-wrap">
+    <div id="track">
+
+      <!-- Panel 1 Â· Hero -->
+      <section class="panel" id="p1">
+        <div class="blob" style="width:600px;height:600px;background:#11251e;top:-10%;left:-10%;"></div>
+        <p class="eyebrow">Proposta Exclusiva Â· 2025</p>
+        <h1>Dommus<br/><em>Planejados</em></h1>
+        <p class="sub">Uma presenÃ§a digital Ã  altura da sofisticaÃ§Ã£o dos seus ambientes. Desenvolvida com excelÃªncia, pensada para converter.</p>
+        <div class="cta-scroll">
+          <svg fill="none" viewBox="0 0 40 12" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="0" y1="6" x2="34" y2="6"/>
+            <polyline points="28,1 34,6 28,11"/>
+          </svg>
+          Arraste para explorar
+        </div>
+      </section>
+
+      <!-- Panel 2 Â· Escopo -->
+      <section class="panel" id="p2">
+        <div class="blob" style="width:500px;height:500px;background:#11251e;bottom:-20%;right:-10%;"></div>
+        <div class="p2-left">
+          <div class="number">01</div>
+          <h2>O que estÃ¡<br/>incluÃ­do</h2>
+          <p>Um ecossistema digital completo, do design ao deploy, para que a Dommus capture os clientes certos.</p>
+        </div>
+        <div class="p2-right">
+          <div class="item-card">
+            <h4>âœ¦ Site Institucional Premium</h4>
+            <p>Design dark-luxury responsivo, com galeria de portfÃ³lio de alto impacto visual e foco em conversÃ£o.</p>
+          </div>
+          <div class="item-card">
+            <h4>âœ¦ AdaptaÃ§Ã£o para Celular</h4>
+            <p>ExperiÃªncia perfeita em todos os dispositivos â€” do desktop ao smartphone dos seus clientes.</p>
+          </div>
+          <div class="item-card">
+            <h4>âœ¦ DomÃ­nio .com.br</h4>
+            <p>Registro do seu domÃ­nio profissional, configurado e apontado para o seu novo site.</p>
+          </div>
+          <div class="item-card">
+            <h4>âœ¦ CTA para WhatsApp</h4>
+            <p>BotÃ£o estratÃ©gico para transformar visitantes em orÃ§amentos diretos na sua conversa.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Panel 3 Â· Investimento -->
+      <section class="panel" id="p3">
+        <div class="blob" style="width:550px;height:550px;background:#11251e;top:-10%;left:50%;transform:translateX(-50%);"></div>
+        <span class="tag">Investimento</span>
+        <div class="price"><sup>R$</sup>600</div>
+        <p class="price-note">Valor Ãºnico Â· Projeto completo</p>
+        <div class="payment-opts">
+          <div class="opt">
+            <div class="opt-icon">â—ˆ</div>
+            <h4>PIX â€” Mais prÃ¡tico</h4>
+            <p>50% de entrada ao confirmar e 50% na aprovaÃ§Ã£o final do site publicado.</p>
+          </div>
+          <div class="opt">
+            <div class="opt-icon">â—‡</div>
+            <h4>CartÃ£o â€” Mais flexÃ­vel</h4>
+            <p>Valor total parcelado em atÃ© 4Ã— via link de pagamento seguro.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Panel 4 Â· Termos -->
+      <section class="panel" id="p4">
+        <div class="blob" style="width:400px;height:400px;background:#11251e;bottom:-5%;right:0%;"></div>
+        <div class="terms-header">
+          <div class="number">02</div>
+          <h2>Termos do<br/>Acordo</h2>
+          <p>TransparÃªncia total. Tudo que foi combinado, por escrito, para que a nossa parceria seja sÃ³lida e tranquila.</p>
+        </div>
+        <div class="terms-list">
+          <div class="term-row">
+            <span class="term-num">I</span>
+            <div class="term-body">
+              <h4>Prazo de Entrega</h4>
+              <p>Conta a partir do pagamento da 1.Âª parcela e do envio de todos os materiais (textos, fotos, acessos) pelo contratante.</p>
+            </div>
+          </div>
+          <div class="term-row">
+            <span class="term-num">II</span>
+            <div class="term-body">
+              <h4>Hospedagem e DomÃ­nio</h4>
+              <p>Os custos da plataforma de hospedagem (Hostinger) sÃ£o de responsabilidade do contratante. InstruÃ§Ãµes completas fornecidas.</p>
+            </div>
+          </div>
+          <div class="term-row">
+            <span class="term-num">III</span>
+            <div class="term-body">
+              <h4>Suporte de 15 dias</h4>
+              <p>ApÃ³s a entrega, 15 dias de suporte gratuito para ajustes de texto, fotos e correÃ§Ãµes. MudanÃ§as estruturais cobradas Ã  parte.</p>
+            </div>
+          </div>
+          <div class="term-row">
+            <span class="term-num">IV</span>
+            <div class="term-body">
+              <h4>Cancelamento</h4>
+              <p>Em caso de desistÃªncia apÃ³s o inÃ­cio, o sinal de 50% nÃ£o Ã© reembolsado. O site sÃ³ Ã© entregue mediante quitaÃ§Ã£o de 100% do valor.</p>
+            </div>
+          </div>
+          <div class="term-row">
+            <span class="term-num">V</span>
+            <div class="term-body">
+              <h4>AlteraÃ§Ãµes de Escopo</h4>
+              <p>Novas pÃ¡ginas ou funcionalidades fora do combinado serÃ£o orÃ§adas separadamente antes de iniciar.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Panel 5 Â· Aceite -->
+      <section class="panel" id="p5">
+        <div class="blob" style="width:600px;height:600px;background:#11251e;bottom:-15%;right:-10%;"></div>
+        <p class="eyebrow">ConfirmaÃ§Ã£o</p>
+        <h2>"Vamos construir<br/>algo memorÃ¡vel?"</h2>
+        <p>Ao clicar abaixo, vocÃª confirma que leu e concordou com todos os termos desta proposta e nos autoriza a iniciar o projeto da Dommus.</p>
+        <a
+          href="https://wa.me/5527998477030?text=Ol%C3%A1!%20Li%20a%20proposta%20completa%20da%20Dommus%20e%20estou%20de%20acordo%20com%20os%20termos.%20Podemos%20iniciar%20o%20projeto!"
+          class="btn-aceite"
+          target="_blank"
+        >
+          Aceitar Proposta
+        </a>
+        <p class="legal">Ao clicar, vocÃª serÃ¡ direcionado ao WhatsApp do responsÃ¡vel pelo projeto para finalizar os detalhes de pagamento e iniciar o desenvolvimento.</p>
+      </section>
+
+    </div><!-- /track -->
+  </div><!-- /track-wrap -->
+
+  <script>
+    // â”€â”€ Cursor â”€â”€
+    const cursor = document.getElementById('cursor');
+    document.addEventListener('mousemove', e => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top  = e.clientY + 'px';
+    });
+    document.querySelectorAll('a, .opt, .dot, .item-card').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('expand'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('expand'));
+    });
+
+    // â”€â”€ Horizontal scroll â”€â”€
+    const track    = document.getElementById('track');
+    const panels   = document.querySelectorAll('.panel');
+    const dots     = document.querySelectorAll('.dot');
+    const progress = document.getElementById('progress');
+    const total    = panels.length;
+    let current    = 0;
+    let animating  = false;
+
+    function goTo(idx) {
+      if (idx < 0 || idx >= total || idx === current) return;
+      current = idx;
+      track.style.transform = `translateX(-${idx * 100}vw)`;
+      dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+      progress.style.width = `${((idx) / (total - 1)) * 100}%`;
+      animating = true;
+      setTimeout(() => animating = false, 800);
+    }
+
+    // Dot nav
+    dots.forEach(d => d.addEventListener('click', () => goTo(+d.dataset.idx)));
+
+    // Wheel
+    let wheelTimeout;
+    window.addEventListener('wheel', e => {
+      e.preventDefault();
+      clearTimeout(wheelTimeout);
+      wheelTimeout = setTimeout(() => {
+        if (e.deltaY > 30 || e.deltaX > 30)  goTo(current + 1);
+        if (e.deltaY < -30 || e.deltaX < -30) goTo(current - 1);
+      }, 30);
+    }, { passive: false });
+
+    // Arrow keys
+    window.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown')  goTo(current + 1);
+      if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')    goTo(current - 1);
+    });
+
+    // Touch swipe
+    let touchStartX = 0;
+    window.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+    window.addEventListener('touchend',   e => {
+      const diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 60) goTo(diff > 0 ? current + 1 : current - 1);
+    });
+  </script>
 </body>
 </html>
