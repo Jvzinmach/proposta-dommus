@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposta Comercial | Dommus</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        'dommus-dark': '#0a0a0a',
+                        'dommus-card': '#141414',
+                        'dommus-gold': '#d4af37',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #0a0a0a; color: #f5f5f5; }
+        .glass-panel {
+            background: rgba(20, 20, 20, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col items-center py-12 px-4 sm:px-6">
+
+    <div class="w-full max-w-4xl space-y-12">
+        
+        <!-- Header -->
+        <header class="text-center space-y-4 fade-in">
+            <h2 class="text-dommus-gold uppercase tracking-[0.3em] text-sm font-semibold">Proposta Exclusiva</h2>
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">EstratÃ©gia Digital <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-dommus-gold to-yellow-200">Dommus Planejados</span></h1>
+            <p class="text-gray-400 max-w-xl mx-auto pt-4 text-lg">Desenvolvimento de presenÃ§a digital de alto padrÃ£o para destacar a excelÃªncia e sofisticaÃ§Ã£o dos seus projetos.</p>
+        </header>
+
+        <!-- Escopo do Projeto -->
+        <section class="glass-panel rounded-2xl p-8 md:p-10 shadow-2xl">
+            <div class="flex items-center space-x-4 mb-6">
+                <div class="w-12 h-12 rounded-full bg-dommus-gold/10 flex items-center justify-center text-dommus-gold">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                </div>
+                <h3 class="text-2xl font-bold">Escopo do Projeto</h3>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="space-y-2">
+                    <h4 class="font-semibold text-dommus-gold">Site Institucional Premium</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Design sofisticado, focado em conversÃ£o e na exibiÃ§Ã£o em alta qualidade dos portfÃ³lios e ambientes planejados.</p>
+                </div>
+                <div class="space-y-2">
+                    <h4 class="font-semibold text-dommus-gold">100% Responsivo</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">AdaptaÃ§Ã£o perfeita para celulares, tablets e computadores, garantindo a melhor experiÃªncia ao seu cliente.</p>
+                </div>
+                <div class="space-y-2">
+                    <h4 class="font-semibold text-dommus-gold">IntegraÃ§Ã£o com WhatsApp</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">BotÃ£o flutuante e chamadas para aÃ§Ã£o estratÃ©gicas para transformar visitantes em orÃ§amentos diretos no seu WhatsApp.</p>
+                </div>
+                <div class="space-y-2">
+                    <h4 class="font-semibold text-dommus-gold">Garantia e Suporte</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">15 dias de suporte tÃ©cnico e acompanhamento gratuito apÃ³s a publicaÃ§Ã£o oficial do site.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Investimento -->
+        <section class="glass-panel rounded-2xl p-8 md:p-10 shadow-2xl border-l-4 border-l-dommus-gold">
+            <h3 class="text-2xl font-bold mb-6">Investimento</h3>
+            
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                <div>
+                    <div class="text-5xl font-extrabold text-white">R$ 600<span class="text-xl text-gray-500 font-normal">,00</span></div>
+                    <p class="text-gray-400 mt-2 text-sm">Valor Ãºnico pelo desenvolvimento completo do projeto.</p>
+                </div>
+                
+                <div class="bg-dommus-dark rounded-xl p-5 border border-white/5 w-full md:w-auto">
+                    <h4 class="text-sm uppercase tracking-wider text-gray-500 font-semibold mb-3">Formas de Pagamento</h4>
+                    <ul class="space-y-3 text-sm text-gray-300">
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 rounded-full bg-green-500 mr-3"></span>
+                            <span><strong>PIX:</strong> 50% no aceite + 50% na entrega</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 rounded-full bg-dommus-gold mr-3"></span>
+                            <span><strong>CartÃ£o:</strong> AtÃ© 4x no link de pagamento</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Termos e CondiÃ§Ãµes (Contrato) -->
+        <section class="glass-panel rounded-2xl p-8 shadow-2xl">
+            <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                Termos do Acordo Comercial
+            </h3>
+            <div class="text-sm text-gray-400 space-y-4 h-48 overflow-y-auto pr-4 scrollbar-thin">
+                <p><strong>1. Entrega e Prazo:</strong> O prazo de entrega do site serÃ¡ acordado via WhatsApp, iniciando a contagem apenas apÃ³s o pagamento da primeira parcela e do envio de todos os materiais (fotos, textos e acessos) por parte do CONTRATANTE.</p>
+                
+                <p><strong>2. Hospedagem e DomÃ­nio:</strong> Os custos da plataforma de hospedagem e registro de domÃ­nio (.com.br) sÃ£o de responsabilidade do CONTRATANTE. O CONTRATADO auxiliarÃ¡ no passo a passo para a contrataÃ§Ã£o da Hostinger.</p>
+                
+                <p><strong>3. Suporte:</strong> EstÃ£o inclusos 15 dias de suporte para pequenas alteraÃ§Ãµes (textos, troca de fotos e correÃ§Ã£o de erros) apÃ³s a entrega. MudanÃ§as estruturais nÃ£o estÃ£o cobertas no suporte gratuito.</p>
+                
+                <p><strong>4. Cancelamento:</strong> Em caso de desistÃªncia apÃ³s o inÃ­cio do projeto, o valor de entrada (50%) nÃ£o serÃ¡ reembolsado, cobrindo as horas jÃ¡ trabalhadas. A transferÃªncia oficial do site ocorre mediante o pagamento de 100% do valor.</p>
+            </div>
+        </section>
+
+        <!-- CTA Aceite -->
+        <div class="text-center pt-8 pb-12">
+            <p class="text-gray-400 mb-6 text-sm">Ao clicar no botÃ£o abaixo, vocÃª concorda com os termos descritos acima e sela nossa parceria.</p>
+            <!-- O link abaixo vai direto para o seu WhatsApp -->
+            <a href="https://wa.me/5527998477030?text=Ol%C3%A1!%20Li%20a%20proposta%20da%20Dommus%20e%20estou%20de%20acordo.%20Podemos%20seguir%20com%20o%20pagamento%20e%20iniciar%20o%20projeto!" 
+               class="inline-block bg-dommus-gold hover:bg-yellow-500 text-black font-bold text-lg py-4 px-10 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_20px_rgba(212,175,55,0.4)]">
+                Aprovar Proposta e Iniciar Projeto
+            </a>
+        </div>
+
+    </div>
+
+</body>
+</html>
