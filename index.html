@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Proposta Comercial Â· Dommus Planejados</title>
+  <title>Proposta Comercial · Dommus Planejados</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,600&display=swap" rel="stylesheet"/>
@@ -28,7 +28,7 @@
       cursor: none;
     }
 
-    /* â”€â”€ Noise overlay â”€â”€ */
+    /* ── Noise overlay ── */
     body::before {
       content: '';
       position: fixed; inset: 0;
@@ -37,7 +37,7 @@
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/svg%3E");
     }
 
-    /* â”€â”€ Custom cursor â”€â”€ */
+    /* ── Custom cursor ── */
     #cursor {
       position: fixed; top: 0; left: 0;
       width: 16px; height: 16px;
@@ -50,7 +50,7 @@
     }
     #cursor.expand { width: 44px; height: 44px; background: rgba(230,222,202,0.12); }
 
-    /* â”€â”€ Progress bar â”€â”€ */
+    /* ── Progress bar ── */
     #progress {
       position: fixed; top: 0; left: 0;
       height: 2px; width: 0%;
@@ -59,7 +59,7 @@
       transition: width .15s ease;
     }
 
-    /* â”€â”€ Pill nav â”€â”€ */
+    /* ── Pill nav ── */
     #pill-nav {
       position: fixed; top: 28px; left: 50%; transform: translateX(-50%);
       z-index: 9996;
@@ -83,7 +83,7 @@
     }
     #pill-nav .dot.active { background: var(--accent); transform: scale(1.4); }
 
-    /* â”€â”€ Horizontal scroll wrapper â”€â”€ */
+    /* ── Horizontal scroll wrapper ── */
     #track-wrap {
       position: fixed; inset: 0;
       display: flex; align-items: stretch;
@@ -94,7 +94,7 @@
       transition: transform .75s cubic-bezier(0.76, 0, 0.24, 1);
     }
 
-    /* â”€â”€ Sections â”€â”€ */
+    /* ── Sections ── */
     .panel {
       width: 100vw; height: 100vh;
       flex-shrink: 0;
@@ -112,7 +112,7 @@
     }
     .panel:first-child::before, .panel:last-child::before { display: none; }
 
-    /* â”€â”€ Panel 1 â€“ Hero â”€â”€ */
+    /* ── Panel 1 – Hero ── */
     #p1 { flex-direction: column; text-align: center; gap: 24px; }
     #p1 .eyebrow {
       font-size: .75rem; letter-spacing: .35em; text-transform: uppercase;
@@ -136,7 +136,7 @@
     #p1 .cta-scroll svg { width: 40px; height: 12px; stroke: var(--muted); }
     @keyframes nudge { 0%,100%{ transform: translateX(0); } 50%{ transform: translateX(10px); } }
 
-    /* â”€â”€ Panel 2 â€“ Escopo â”€â”€ */
+    /* ── Panel 2 – Escopo ── */
     #p2 { gap: 10vw; }
     .p2-left { flex: 1; }
     .p2-left .number {
@@ -163,7 +163,7 @@
     .item-card h4 { font-size: .9rem; font-weight: 600; color: var(--accent); margin-bottom: 6px; }
     .item-card p  { font-size: .82rem; color: var(--muted); line-height: 1.6; }
 
-    /* â”€â”€ Panel 3 â€“ Investimento â”€â”€ */
+    /* ── Panel 3 – Investimento ── */
     #p3 { flex-direction: column; gap: 12px; }
     #p3 .tag {
       font-size: .7rem; letter-spacing: .3em; text-transform: uppercase;
@@ -192,7 +192,7 @@
     .opt h4 { font-size: .9rem; font-weight: 600; color: var(--accent); margin-bottom: 8px; }
     .opt p  { font-size: .8rem; color: var(--muted); line-height: 1.6; }
 
-    /* â”€â”€ Panel 4 â€“ Termos â”€â”€ */
+    /* ── Panel 4 – Termos ── */
     #p4 { gap: 10vw; align-items: flex-start; padding-top: 12vh; }
     #p4 .terms-header { flex: 0 0 auto; max-width: 280px; }
     #p4 .terms-header .number { font-family:'Playfair Display',serif; font-style:italic; font-size:4rem; color:rgba(230,222,202,0.07); }
@@ -209,7 +209,7 @@
     .term-body h4 { font-size: .88rem; font-weight:600; color:var(--accent); margin-bottom:4px; }
     .term-body p  { font-size: .8rem; color: var(--muted); line-height:1.65; }
 
-    /* â”€â”€ Panel 5 â€“ Aceite â”€â”€ */
+    /* ── Panel 5 – Aceite ── */
     #p5 { flex-direction: column; text-align: center; gap: 28px; }
     #p5 .eyebrow { font-size: .72rem; letter-spacing:.3em; text-transform:uppercase; color:var(--muted); }
     #p5 h2 { font-family:'Playfair Display',serif; font-style:italic; font-size:clamp(2rem,5vw,4rem); color:var(--accent); line-height:1.1; }
@@ -232,7 +232,7 @@
     }
     #p5 .legal { font-size: .72rem; color: rgba(230,222,202,0.3); max-width: 360px; }
 
-    /* â”€â”€ BG ambient blobs â”€â”€ */
+    /* ── BG ambient blobs ── */
     .blob {
       position: absolute; border-radius: 50%; filter: blur(90px);
       pointer-events: none; z-index: 0; opacity: .18;
@@ -263,12 +263,12 @@
   <div id="track-wrap">
     <div id="track">
 
-      <!-- Panel 1 Â· Hero -->
+      <!-- Panel 1 · Hero -->
       <section class="panel" id="p1">
         <div class="blob" style="width:600px;height:600px;background:#11251e;top:-10%;left:-10%;"></div>
-        <p class="eyebrow">Proposta Exclusiva Â· 2025</p>
+        <p class="eyebrow">Proposta Exclusiva · 2025</p>
         <h1>Dommus<br/><em>Planejados</em></h1>
-        <p class="sub">Uma presenÃ§a digital Ã  altura da sofisticaÃ§Ã£o dos seus ambientes. Desenvolvida com excelÃªncia, pensada para converter.</p>
+        <p class="sub">Uma presença digital à altura da sofisticação dos seus ambientes. Desenvolvida com excelência, pensada para converter.</p>
         <div class="cta-scroll">
           <svg fill="none" viewBox="0 0 40 12" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <line x1="0" y1="6" x2="34" y2="6"/>
@@ -278,107 +278,107 @@
         </div>
       </section>
 
-      <!-- Panel 2 Â· Escopo -->
+      <!-- Panel 2 · Escopo -->
       <section class="panel" id="p2">
         <div class="blob" style="width:500px;height:500px;background:#11251e;bottom:-20%;right:-10%;"></div>
         <div class="p2-left">
           <div class="number">01</div>
-          <h2>O que estÃ¡<br/>incluÃ­do</h2>
+          <h2>O que está<br/>incluído</h2>
           <p>Um ecossistema digital completo, do design ao deploy, para que a Dommus capture os clientes certos.</p>
         </div>
         <div class="p2-right">
           <div class="item-card">
-            <h4>âœ¦ Site Institucional Premium</h4>
-            <p>Design dark-luxury responsivo, com galeria de portfÃ³lio de alto impacto visual e foco em conversÃ£o.</p>
+            <h4>✦ Site Institucional Premium</h4>
+            <p>Design dark-luxury responsivo, com galeria de portfólio de alto impacto visual e foco em conversão.</p>
           </div>
           <div class="item-card">
-            <h4>âœ¦ AdaptaÃ§Ã£o para Celular</h4>
-            <p>ExperiÃªncia perfeita em todos os dispositivos â€” do desktop ao smartphone dos seus clientes.</p>
+            <h4>✦ Adaptação para Celular</h4>
+            <p>Experiência perfeita em todos os dispositivos — do desktop ao smartphone dos seus clientes.</p>
           </div>
           <div class="item-card">
-            <h4>âœ¦ DomÃ­nio .com.br</h4>
-            <p>Registro do seu domÃ­nio profissional, configurado e apontado para o seu novo site.</p>
+            <h4>✦ Domínio .com.br</h4>
+            <p>Registro do seu domínio profissional, configurado e apontado para o seu novo site.</p>
           </div>
           <div class="item-card">
-            <h4>âœ¦ CTA para WhatsApp</h4>
-            <p>BotÃ£o estratÃ©gico para transformar visitantes em orÃ§amentos diretos na sua conversa.</p>
+            <h4>✦ CTA para WhatsApp</h4>
+            <p>Botão estratégico para transformar visitantes em orçamentos diretos na sua conversa.</p>
           </div>
         </div>
       </section>
 
-      <!-- Panel 3 Â· Investimento -->
+      <!-- Panel 3 · Investimento -->
       <section class="panel" id="p3">
         <div class="blob" style="width:550px;height:550px;background:#11251e;top:-10%;left:50%;transform:translateX(-50%);"></div>
         <span class="tag">Investimento</span>
         <div class="price"><sup>R$</sup>600</div>
-        <p class="price-note">Valor Ãºnico Â· Projeto completo</p>
+        <p class="price-note">Valor único · Projeto completo</p>
         <div class="payment-opts">
           <div class="opt">
-            <div class="opt-icon">â—ˆ</div>
-            <h4>PIX â€” Mais prÃ¡tico</h4>
-            <p>50% de entrada ao confirmar e 50% na aprovaÃ§Ã£o final do site publicado.</p>
+            <div class="opt-icon">◈</div>
+            <h4>PIX — Mais prático</h4>
+            <p>50% de entrada ao confirmar e 50% na aprovação final do site publicado.</p>
           </div>
           <div class="opt">
-            <div class="opt-icon">â—‡</div>
-            <h4>CartÃ£o â€” Mais flexÃ­vel</h4>
-            <p>Valor total parcelado em atÃ© 4Ã— via link de pagamento seguro.</p>
+            <div class="opt-icon">◇</div>
+            <h4>Cartão — Mais flexível</h4>
+            <p>Valor total parcelado em até 4× via link de pagamento seguro.</p>
           </div>
         </div>
       </section>
 
-      <!-- Panel 4 Â· Termos -->
+      <!-- Panel 4 · Termos -->
       <section class="panel" id="p4">
         <div class="blob" style="width:400px;height:400px;background:#11251e;bottom:-5%;right:0%;"></div>
         <div class="terms-header">
           <div class="number">02</div>
           <h2>Termos do<br/>Acordo</h2>
-          <p>TransparÃªncia total. Tudo que foi combinado, por escrito, para que a nossa parceria seja sÃ³lida e tranquila.</p>
+          <p>Transparência total. Tudo que foi combinado, por escrito, para que a nossa parceria seja sólida e tranquila.</p>
         </div>
         <div class="terms-list">
           <div class="term-row">
             <span class="term-num">I</span>
             <div class="term-body">
               <h4>Prazo de Entrega</h4>
-              <p>Conta a partir do pagamento da 1.Âª parcela e do envio de todos os materiais (textos, fotos, acessos) pelo contratante.</p>
+              <p>Conta a partir do pagamento da 1.ª parcela e do envio de todos os materiais (textos, fotos, acessos) pelo contratante.</p>
             </div>
           </div>
           <div class="term-row">
             <span class="term-num">II</span>
             <div class="term-body">
-              <h4>Hospedagem e DomÃ­nio</h4>
-              <p>Os custos da plataforma de hospedagem (Hostinger) sÃ£o de responsabilidade do contratante. InstruÃ§Ãµes completas fornecidas.</p>
+              <h4>Hospedagem e Domínio</h4>
+              <p>Os custos da plataforma de hospedagem (Hostinger) são de responsabilidade do contratante. Instruções completas fornecidas.</p>
             </div>
           </div>
           <div class="term-row">
             <span class="term-num">III</span>
             <div class="term-body">
               <h4>Suporte de 15 dias</h4>
-              <p>ApÃ³s a entrega, 15 dias de suporte gratuito para ajustes de texto, fotos e correÃ§Ãµes. MudanÃ§as estruturais cobradas Ã  parte.</p>
+              <p>Após a entrega, 15 dias de suporte gratuito para ajustes de texto, fotos e correções. Mudanças estruturais cobradas à parte.</p>
             </div>
           </div>
           <div class="term-row">
             <span class="term-num">IV</span>
             <div class="term-body">
               <h4>Cancelamento</h4>
-              <p>Em caso de desistÃªncia apÃ³s o inÃ­cio, o sinal de 50% nÃ£o Ã© reembolsado. O site sÃ³ Ã© entregue mediante quitaÃ§Ã£o de 100% do valor.</p>
+              <p>Em caso de desistência após o início, o sinal de 50% não é reembolsado. O site só é entregue mediante quitação de 100% do valor.</p>
             </div>
           </div>
           <div class="term-row">
             <span class="term-num">V</span>
             <div class="term-body">
-              <h4>AlteraÃ§Ãµes de Escopo</h4>
-              <p>Novas pÃ¡ginas ou funcionalidades fora do combinado serÃ£o orÃ§adas separadamente antes de iniciar.</p>
+              <h4>Alterações de Escopo</h4>
+              <p>Novas páginas ou funcionalidades fora do combinado serão orçadas separadamente antes de iniciar.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Panel 5 Â· Aceite -->
+      <!-- Panel 5 · Aceite -->
       <section class="panel" id="p5">
         <div class="blob" style="width:600px;height:600px;background:#11251e;bottom:-15%;right:-10%;"></div>
-        <p class="eyebrow">ConfirmaÃ§Ã£o</p>
-        <h2>"Vamos construir<br/>algo memorÃ¡vel?"</h2>
-        <p>Ao clicar abaixo, vocÃª confirma que leu e concordou com todos os termos desta proposta e nos autoriza a iniciar o projeto da Dommus.</p>
+        <p class="eyebrow">Confirmação</p>
+        <h2>"Vamos construir<br/>algo memorável?"</h2>
+        <p>Ao clicar abaixo, você confirma que leu e concordou com todos os termos desta proposta e nos autoriza a iniciar o projeto da Dommus.</p>
         <a
           href="https://wa.me/5527998477030?text=Ol%C3%A1!%20Li%20a%20proposta%20completa%20da%20Dommus%20e%20estou%20de%20acordo%20com%20os%20termos.%20Podemos%20iniciar%20o%20projeto!"
           class="btn-aceite"
@@ -386,14 +386,14 @@
         >
           Aceitar Proposta
         </a>
-        <p class="legal">Ao clicar, vocÃª serÃ¡ direcionado ao WhatsApp do responsÃ¡vel pelo projeto para finalizar os detalhes de pagamento e iniciar o desenvolvimento.</p>
+        <p class="legal">Ao clicar, você será direcionado ao WhatsApp do responsável pelo projeto para finalizar os detalhes de pagamento e iniciar o desenvolvimento.</p>
       </section>
 
     </div><!-- /track -->
   </div><!-- /track-wrap -->
 
   <script>
-    // â”€â”€ Cursor â”€â”€
+    // ── Cursor ──
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
       cursor.style.left = e.clientX + 'px';
@@ -404,7 +404,7 @@
       el.addEventListener('mouseleave', () => cursor.classList.remove('expand'));
     });
 
-    // â”€â”€ Horizontal scroll â”€â”€
+    // ── Horizontal scroll ──
     const track    = document.getElementById('track');
     const panels   = document.querySelectorAll('.panel');
     const dots     = document.querySelectorAll('.dot');
